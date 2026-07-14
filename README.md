@@ -1,10 +1,10 @@
 # Java URL Shortener
 
-A simple Java Spring application that submits a simple url and converts into a new url with a hashcode.
+A simple Java Spring application that takes a target url and converts into a new url with a unique hashcode.
 
 ## Features
 
-- Web application with login and register forms
+- Web application featuring secure login and register forms
 - List with url shortener and the original url
 - form with the original url that generates the new url shortener
 - A separated Web application for validation of the url shortener and handling redirection to the original URL
