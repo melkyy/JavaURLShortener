@@ -1,51 +1,41 @@
-# Project Name
+# Java URL Shortener
 
-Brief description of what this project does.
+A simple Java Spring application that submits a simple url and converts into a new url with a hashcode.
 
 ## Features
 
-- Feature 1
-- Feature 2
-- Feature 3
+- Web application with login and register forms
+- List with url shortener and the original url
+- form with the original url that generates the new url shortener
+- A separated Web application for validation of the url shortener and handling redirection to the original URL
 
 ## Installation
 
 ```bash
-git clone <repository-url>
-cd URLProject
+git clone [<repository-url>](https://github.com/melkyy/JavaURLShortener.git)
+cd JavaURLShortener
+docker compose up --build
 ```
 
 ## Usage
+The project contains two web applications to separate the managing of url and the validation of the shortened url it has two endpoints:
 
-```java
-// Example usage
-```
+### uRL Shortener Generation FrontEnd
+Vue.js application that is used to manage your URLS
+
+### uRL Shortener Generation Endpoints
+There are several endpoints that manages the URLS and open the url shortened in a new tab
+      http://localhost:8081/login
+      http://localhost:8081/register
+      http://localhost:8081/url
+
+### uRL Shortener Validator http://localhost:8082
+The web application validates the hashed code and ensures that the URL has the correct format
+      http://localhost:8082/{hashed code}
+
 
 ## Requirements
 
 - Java 8 or higher
 - [Other dependencies]
 
-## Configuration
-
-Describe any configuration steps needed.
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a pull request
-
-## License
-
-This project is licensed under the MIT License.
-
-## Authors
-
-- Your Name
-
-## Support
-
-For issues and questions, please open an issue on the repository.
