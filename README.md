@@ -40,4 +40,5 @@ The web application validates the hashed code and ensures that the URL has the c
 ## Requirements
 
 - Java 8 or higher
+- Docker and Docker Compose
 
