@@ -26,7 +26,7 @@ Vue.js application that is used to manage your URLS
 
 
 ### URL Shortener Generation Endpoints
-There are several endpoints that manages the URLS and open the url shortened in a new tab
+There are several endpoints that manages the URLS
 - http://localhost:8081/login - User authentication
 - http://localhost:8081/register - New account creation
 - http://localhost:8081/url - URL management and generation
