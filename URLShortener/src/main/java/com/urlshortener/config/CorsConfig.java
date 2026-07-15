@@ -31,13 +31,12 @@ public class CorsConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Enable CORS in security
-                .csrf(csrf -> csrf.disable()) // Disable CSRF if you are building a stateless REST API
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> auth.requestMatchers("/login/**").permitAll()
                         .requestMatchers("/register/**").permitAll().anyRequest().authenticated());
-
         return http.build();
     }
 

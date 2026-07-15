@@ -11,7 +11,7 @@ public abstract class BaseController {
         }
         throw new IllegalStateException();
     }
-    protected long getAuthenticatedUserId(){
+    protected String getAuthenticatedUserId(){
         return getAuthenticatedUser().getId();
     }
 }

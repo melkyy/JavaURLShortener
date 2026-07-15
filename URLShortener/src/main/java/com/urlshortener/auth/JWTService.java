@@ -1,6 +1,5 @@
 package com.urlshortener.auth;
 
-import com.urlshortener.user.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -15,14 +14,14 @@ import java.util.function.Function;
 
 @Component
 public class JWTService {
-    private static final String SECRET_KEY = "www.AaronSecret.com.mx-jajajajajajaj";
+    private static final String SECRET_KEY = "SecretStringGITHUBOMGHIEastereggnotrlly";
     private static final long EXPIRATION_CODE = 86400000;
 
     private SecretKey getSigningKey() {
         return Keys.hmacShaKeyFor(SECRET_KEY.getBytes(StandardCharsets.UTF_8));
     }
 
-    public String generateToken(String username, int userId) {
+    public String generateToken(String username, String userId) {
         return Jwts.builder().subject(String.valueOf(username))
                 .claims(Map.of("userId", userId))
                 .issuedAt(new Date(System.currentTimeMillis()))
@@ -34,9 +33,9 @@ public class JWTService {
         return extractClaim(token, Claims::getSubject);
     }
 
-    public Long extractUserId(String token){
+    public String extractUserId(String token){
         Claims claims = extractAllClaims(token);
-        return claims.get("userId", Long.class);
+        return claims.get("userId", String.class);
     }
 
     public boolean isTokenValid(String token, UserDetails userDetails) {

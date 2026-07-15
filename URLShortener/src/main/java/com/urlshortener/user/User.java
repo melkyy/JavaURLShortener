@@ -13,8 +13,7 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
-    private @Id
-    @GeneratedValue long id;
+    private @Id String id;
     private String username;
     private String password;
 
@@ -33,11 +32,11 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

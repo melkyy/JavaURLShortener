@@ -26,10 +26,10 @@ CREATE TABLE `urls` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `original_url` varchar(255) DEFAULT NULL,
   `hashed_code` varchar(255) NOT NULL,
-  `user_id` bigint DEFAULT NULL,
+  `user_id` varchar(255) DEFAULT NULL,
   `created_date` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=453 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,6 @@ CREATE TABLE `urls` (
 
 LOCK TABLES `urls` WRITE;
 /*!40000 ALTER TABLE `urls` DISABLE KEYS */;
-INSERT INTO `urls` VALUES (1,'https://aaronrodriguez.com','123',1,'26/05/2026'),(2,'https://aaronrodriguez.com','123',1,'26/05/2026'),(3,'chanatech.com','1LkNCR8NJZMGs5',1,'27/06/2026');
 /*!40000 ALTER TABLE `urls` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-06-08 16:15:11
+-- Dump completed on 2026-07-09 22:57:55

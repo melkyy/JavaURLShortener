@@ -41,6 +41,7 @@ public class UserController {
 
         newUser.setUsername(user.getUsername());
         newUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        newUser.setId(UserService.generateId());
         return repository.save(newUser);
     }
 
@@ -80,8 +81,8 @@ public class UserController {
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND);
             }
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(existingUser.getUsername(), userBody.getPassword()));
-            int id = (int) existingUser.getId();
-            String token = jwtService.generateToken(existingUser.getUsername(), (int)existingUser.getId());
+            String id = existingUser.getId();
+            String token = jwtService.generateToken(existingUser.getUsername(), existingUser.getId());
             System.out.println("token :: " + token);
             return ResponseEntity.ok(Map.of("token", token));
         } catch (Exception e) {

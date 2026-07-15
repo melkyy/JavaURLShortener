@@ -1,19 +1,16 @@
-FROM eclipse-termurin:24-jdk-alpine as build
+FROM maven:3.9-eclipse-temurin-24 AS build
 
 WORKDIR /app
-COPY . .
+COPY pom.xml .
+RUN mvn dependency:go-offline -B
 
+COPY src ./src
 RUN mvn clean package -DskipTests
 
 FROM eclipse-temurin:24-jre-alpine
 WORKDIR /app
-
 RUN addgroup -S spring && adduser -S spring -G spring
 USER spring:spring
-
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
-
-EXPOSE 8080
-
+COPY --from=build /app/target/*.jar app.jar
+EXPOSE 8082
 ENTRYPOINT ["java", "-jar", "app.jar"]

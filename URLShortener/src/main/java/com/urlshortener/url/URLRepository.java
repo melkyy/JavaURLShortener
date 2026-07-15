@@ -7,6 +7,6 @@ import java.util.List;
 
 @Repository
 public interface URLRepository extends JpaRepository<URL, Long> {
-    List<URL> findByUserId(Long userId);
+    List<URL> findByUserId(String userId);
     URL findOneByHashedCode(String hashedCode);
 }

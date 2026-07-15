@@ -1,18 +1,52 @@
 services:
   urlshortenercrud:
     build: ./URLShortener
+    restart: on-failure
     ports:
-      - "8081:8080"
+      - "8081:8081"
+    depends_on:
+      mysqlurlshortener:
+        condition: service_healthy
     environment:
-      MYSQL_HOST: host.docker.internal
+      MYSQL_HOST: mysqlurlshortener
+      MYSQL_USERNAME: urluser
+      MYSQL_PASSWORD: urlpassword
   urlshortenerredirection:
     build: ./URLRedirection
+    restart: on-failure
     ports:
-      - "8082:8080"
+      - "8082:8082"
     environment:
-      MYSQL_HOST: host.docker.internal
-
+      MYSQL_HOST: mysqlurlshortener
+      MYSQL_USERNAME: urluser
+      MYSQL_PASSWORD: urlpassword
+    depends_on:
+      mysqlurlshortener:
+        condition: service_healthy
   urlshortenerfront:
     build: ./urlshortenerfront
     ports:
       - "5173:80"
+    depends_on:
+      mysqlurlshortener:
+        condition: service_healthy
+  mysqlurlshortener:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword   # Only used for internal DB admin
+      MYSQL_DATABASE: urlshortener
+      MYSQL_USER: urluser                 # The new dedicated user
+      MYSQL_PASSWORD: urlpassword         # The new dedicated password
+      MYSQL_HOST: mysqlurlshortener
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -prootpassword || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./DB:/docker-entrypoint-initdb.d
+      - mysql_data:/var/lib/mysql
+volumes:
+  mysql_data:

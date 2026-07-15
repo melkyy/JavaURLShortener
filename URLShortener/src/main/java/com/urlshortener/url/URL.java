@@ -12,7 +12,7 @@ public class URL {
     @GeneratedValue Long id;
     private String originalUrl;
     private String hashedCode;
-    private Long userId;
+    private String userId;
     private String createdDate;
 
     public URL(){}
@@ -33,11 +33,11 @@ public class URL {
         this.originalUrl = originalUrl;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUser_id(Long getUserId) {
+    public void setUser_id(String getUserId) {
         this.userId = getUserId;
     }
 
